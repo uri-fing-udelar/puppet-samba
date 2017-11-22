@@ -40,6 +40,7 @@ define samba::server::share($ensure = present,
                             $printer_name = '',
                             $msdfs_root = '',
                             $guest_account = '',
+                            $posix_locking = '',
                             ) {
 
   $incl    = $samba::server::incl
@@ -239,6 +240,11 @@ define samba::server::share($ensure = present,
         ''      => "rm  \"${target}/guest account\"",
         default => "set \"${target}/guest account\" '${guest_account}'",
       },
+      $posix_locking ? {
+        default => "set ${target}/posix_locking '${posix_locking}'",
+        ''      => "rm  ${target}/posix_locking",
+      },
+
     ]
 
     augeas { "${name}-changes":
