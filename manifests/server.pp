@@ -40,6 +40,7 @@ class samba::server($interfaces = '',
                     $follow_symlinks = '',
                     $wide_links = '',
                     $unix_extensions = '',
+                    $passdb_backend = '',
                     
                     $shares = {},
                     $users = {}, ) {
@@ -102,7 +103,7 @@ class samba::server($interfaces = '',
     'follow symlinks':       value => $follow_symlinks;
     'wide links':            value => $wide_links;
     'unix extensions':       value => $unix_extensions;
-
+    'passdb backends':       value => $passdb_backend;
   }
 
   create_resources(samba::server::share, $shares)
