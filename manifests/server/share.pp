@@ -17,6 +17,7 @@ define samba::server::share($ensure = present,
                             $path = '',
                             $op_locks = '',
                             $level2_oplocks = '',
+                            $veto_files = '',
                             $veto_oplock_files = '',
                             $read_only = '',
                             $public = '',
@@ -190,6 +191,10 @@ define samba::server::share($ensure = present,
       $level2_oplocks ? {
         ''      => "rm  \"${target}/level2 oplocks\"",
         default => "set \"${target}/level2 oplocks\" '${level2_oplocks}'",
+      },
+      $veto_files ? {
+        ''      => "rm  \"${target}/veto files\"",
+        default => "set \"${target}/veto files\" '${veto_files}'",
       },
       $veto_oplock_files ? {
         ''      => "rm  \"${target}/veto oplock files\"",
