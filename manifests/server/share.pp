@@ -247,12 +247,12 @@ define samba::server::share($ensure = present,
         default => "set \"${target}/guest account\" '${guest_account}'",
       },
       $posix_locking ? {
-        default => "set ${target}/posix locking '${posix_locking}'",
         ''      => "rm  ${target}/posix locking",
+        default => "set ${target}/posix locking '${posix_locking}'",
       },
       $hosts_allow ? {
-        default => "set ${target}/hosts allow '${hosts_allow}'",
         ''      => "rm  ${target}/hosts allow",
+        default => "set ${target}/hosts allow '${hosts_allow}'",
       },
 
     ]
